@@ -32,7 +32,7 @@
     "href": "index.html#the-meta-package",
     "title": "Introduction to Machine Learning with tidymodels",
     "section": "The Meta-package",
-    "text": "The Meta-package\n\nlibrary(tidymodels)\n#&gt; ── Attaching packages ────────────────────────────────────── tidymodels 1.2.0 ──\n#&gt; ✔ broom        1.0.6          ✔ recipes      1.1.0     \n#&gt; ✔ dials        1.3.0          ✔ rsample      1.2.1.9000\n#&gt; ✔ dplyr        1.1.4          ✔ tibble       3.2.1     \n#&gt; ✔ ggplot2      3.5.1          ✔ tidyr        1.3.1     \n#&gt; ✔ infer        1.0.7          ✔ tune         1.2.1.9000\n#&gt; ✔ modeldata    1.4.0          ✔ workflows    1.1.4.9000\n#&gt; ✔ parsnip      1.2.1.9002     ✔ workflowsets 1.1.0     \n#&gt; ✔ purrr        1.0.2          ✔ yardstick    1.3.1\n#&gt; ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──\n#&gt; ✖ purrr::discard() masks scales::discard()\n#&gt; ✖ dplyr::filter()  masks stats::filter()\n#&gt; ✖ dplyr::lag()     masks stats::lag()\n#&gt; ✖ recipes::step()  masks stats::step()\n#&gt; • Use tidymodels_prefer() to resolve common conflicts.\n\ntidymodels_prefer()"
+    "text": "The Meta-package\n\nlibrary(tidymodels)\n#&gt; ── Attaching packages ────────────────────────────────────── tidymodels 1.2.0 ──\n#&gt; ✔ broom        1.0.6     ✔ recipes      1.1.0\n#&gt; ✔ dials        1.3.0     ✔ rsample      1.2.1\n#&gt; ✔ dplyr        1.1.4     ✔ tibble       3.2.1\n#&gt; ✔ ggplot2      3.5.1     ✔ tidyr        1.3.1\n#&gt; ✔ infer        1.0.7     ✔ tune         1.2.1\n#&gt; ✔ modeldata    1.4.0     ✔ workflows    1.1.4\n#&gt; ✔ parsnip      1.2.1     ✔ workflowsets 1.1.0\n#&gt; ✔ purrr        1.0.2     ✔ yardstick    1.3.1\n#&gt; ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──\n#&gt; ✖ purrr::discard() masks scales::discard()\n#&gt; ✖ dplyr::filter()  masks stats::filter()\n#&gt; ✖ dplyr::lag()     masks stats::lag()\n#&gt; ✖ recipes::step()  masks stats::step()\n#&gt; • Learn how to get started at https://www.tidymodels.org/start/\n\ntidymodels_prefer()"
   },
   {
     "objectID": "index.html#why-tidymodels-consistency",
@@ -165,7 +165,7 @@
     "href": "index.html#does-it-work",
     "title": "Introduction to Machine Learning with tidymodels",
     "section": "Does it work?",
-    "text": "Does it work?\n\n\n\naugment(mod_fit, delivery_val) %&gt;% \n  ggplot(aes(.pred, time_to_delivery)) + \n  geom_abline(col = \"green\", lty = 2) +\n  geom_point(alpha = 1 / 3) +\n  geom_smooth(se = FALSE) +\n  coord_obs_pred()\n\nMeh.\nHow will we quantify “meh”?"
+    "text": "Does it work?\n\n\n\naugment(mod_fit, delivery_val) %&gt;% \n  ggplot(aes(.pred, time_to_delivery)) + \n  geom_abline(col = \"green\", lty = 2) +\n  geom_point(alpha = 1 / 3) +\n  geom_smooth(se = FALSE) +\n  coord_obs_pred()\n\n# or: \nlibrary(probably)\naugment(mod_fit, delivery_val) %&gt;% \n  cal_plot_regression(time_to_delivery, .pred)\n\nMeh.\nHow will we quantify “meh”?"
   },
   {
     "objectID": "index.html#measuring-performance",
@@ -263,7 +263,7 @@
     "href": "index.html#does-it-work-better",
     "title": "Introduction to Machine Learning with tidymodels",
     "section": "Does it work better?",
-    "text": "Does it work better?\n\n\n\nlm_res %&gt;% \n  collect_predictions() %&gt;% \n  ggplot(aes(.pred, time_to_delivery)) + \n  geom_abline(col = \"green\", lty = 2) +\n  geom_point(alpha = 1 / 3) +\n  geom_smooth(se = FALSE) +\n  coord_obs_pred()\n\nNot perfect but 👍.\n\nThe probably package has better tools to visualize and mitigate calibration issues."
+    "text": "Does it work better?\n\n\n\ncal_plot_regression(lm_res)\n\nNot perfect but 👍.\n\nThe probably package has better tools to visualize and mitigate calibration issues."
   },
   {
     "objectID": "index.html#next-steps",
@@ -305,7 +305,7 @@
     "href": "index.html#does-it-work-better-1",
     "title": "Introduction to Machine Learning with tidymodels",
     "section": "Does it work better?",
-    "text": "Does it work better?\n\n\n\ncubist_res %&gt;% \n  collect_predictions() %&gt;% \n  ggplot(aes(.pred, time_to_delivery)) + \n  geom_abline(col = \"green\", lty = 2) +\n  geom_point(alpha = 1 / 3) +\n  geom_smooth(se = FALSE) +\n  coord_obs_pred()\n\nNice"
+    "text": "Does it work better?\n\n\n\ncal_plot_regression(cubist_res)\n\nNice"
   },
   {
     "objectID": "index.html#a-shortcut",
@@ -319,7 +319,7 @@
     "href": "index.html#test-set-results",
     "title": "Introduction to Machine Learning with tidymodels",
     "section": "Test set results",
-    "text": "Test set results\n\n\n\ncollect_metrics(cubist_final_res)\n#&gt; # A tibble: 2 × 4\n#&gt;   .metric .estimator .estimate .config             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               \n#&gt; 1 rmse    standard       2.08  Preprocessor1_Model1\n#&gt; 2 rsq     standard       0.914 Preprocessor1_Model1\n\nNot too bad.\n\ncubist_final_res %&gt;% \n  collect_predictions() %&gt;% \n  ggplot(aes(.pred, time_to_delivery)) + \n  geom_abline(col = \"green\", lty = 2) +\n  geom_point(alpha = 1 / 3) +\n  geom_smooth(se = FALSE) +\n  coord_obs_pred()\n\nHmm. Could be better."
+    "text": "Test set results\n\n\n\ncollect_metrics(cubist_final_res)\n#&gt; # A tibble: 2 × 4\n#&gt;   .metric .estimator .estimate .config             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               \n#&gt; 1 rmse    standard       2.08  Preprocessor1_Model1\n#&gt; 2 rsq     standard       0.914 Preprocessor1_Model1\n\nNot too bad.\n\ncal_plot_regression(cubist_final_res)\n\nHmm. Could be better."
   },
   {
     "objectID": "index.html#resources-1",

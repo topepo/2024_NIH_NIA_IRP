@@ -11,7 +11,7 @@ Max Kuhn is a software engineer at Posit PBC (née RStudio). He is improving R�
 To prepare, you’ll need to do a few package installs: 
 
 ```r
-install.packages(c("Cubist", "splines2", "tidymodels", "rules"))
+install.packages(c("Cubist", "probably", "splines2", "tidymodels", "rules"))
 ```
 
 At the time of this tutorial, we have been in the process of releasing a lot of packages. It’s alright if you have the previous versions though.
