@@ -1,4 +1,4 @@
-ModSimWG Special Seminar: A short introduction to tidymodels
+A short introduction to tidymodels
 
 Abstract:
 
