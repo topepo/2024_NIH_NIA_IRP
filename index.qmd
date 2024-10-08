@@ -578,7 +578,7 @@ How will we quantify "meh"?
 #| fig-align: right
 #| out-width: 100%
 augment(mod_fit, delivery_val) %>% 
-  ggplot(aes(.pred, time_to_delivery)) + 
+  ggplot(aes(time_to_delivery, .pred)) + 
   geom_abline(col = "green", lty = 2) +
   geom_point(alpha = 1 / 3) +
   geom_smooth(se = FALSE) +
@@ -1142,13 +1142,7 @@ Hmm. Could be better.
 #| fig-height: 4
 #| fig-align: right
 #| out-width: 100%
-cubist_final_res %>% 
-  collect_predictions() %>% 
-  ggplot(aes(.pred, time_to_delivery)) + 
-  geom_abline(col = "green", lty = 2) +
-  geom_point(alpha = 1 / 3) +
-  geom_smooth(se = FALSE) +
-  coord_obs_pred()
+cal_plot_regression(cubist_final_res)
 ```
 
 
